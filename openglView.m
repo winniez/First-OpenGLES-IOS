@@ -13,7 +13,7 @@ typedef struct {
     float Position[3];
     float Color[4];
 } Vertex;
-
+/*
 const Vertex Vertices[] = {
     {{1, -1, 0}, {1, 0, 0, 1}},
     {{1, 1, 0}, {1, 0, 0, 1}},
@@ -23,8 +23,56 @@ const Vertex Vertices[] = {
     {{1, 1, -1}, {1, 0, 0, 1}},
     {{-1, 1, -1}, {0, 1, 0, 1}},
     {{-1, -1, -1}, {0, 1, 0, 1}}
+};*/
+const Vertex Vertices[] = {
+    {{.8944,.4472,0}, {.8944,.4472,0, 1}},
+    {{.2764,.4472,.8506},{.2764,.4472,.8506, 1}},
+    {{.2764,.4472,-.8506},{.2764,.4472,-.8506,1}},
+    {{-.7236,.4472,.5257},{-.7236,.4472,.5257,1}},
+    {{-.7236,.4472,-.5257},{-.7236,.4472,-.5257,1}},
+    {{-.3416,.4472,0},{-.3416,.4472,0,1}},
+    {{-.1056,.4472,.3249},{-.1056,.4472,.3249,1}},
+    {{-.1056,.4472,-.3249},{-.1056,.4472,-.3249,1}},
+    {{.2764,.4472,.2008},{.2764,.4472,.2008,1}},
+    {{.2764,.4472,-.2008},{.2764,.4472,-.2008,1}},
+    {{-.8944,-.4472,0},{-.8944,-.4472,0,1}},
+    {{-.2764,-.4472,.8506},{-.2764,-.4472,.8506,1}},
+    {{-.2764,-.4472,-.8506},{-.2764,-.4472,-.8506,1}},
+    {{.7236,-.4472,.5257},{.7236,-.4472,.5257,1}},
+    {{.7236,-.4472,-.5257},{.7236,-.4472,-.5257,1}},
+    {{.3416,-.4472,0},{.3416,-.4472,0,1}},
+{{.1056,-.4472,.3249},{.1056,-.4472,.3249,1}},
+{{.1056,-.4472,-.3249},{.1056,-.4472,-.3249,1}},
+{{-.2764,-.4472,.2008},{-.2764,-.4472,.2008,1}},
+{{-.2764,-.4472,-.2008},{-.2764,-.4472,-.2008,1}},
+{{-.5527,.1058,0},{-.5527,.1058,0,1}},
+{{-.1708,.1058,.5527},{-.1708,.1058,.5527,1}},
+{{-.1708,.1058,-.5527},{-.1708,.1058,-.5527,1}},
+{{.4471,.1058,.3249},{.4471,.1058,.3249,1}},
+{{.4471,.1058,-.3249},{.4471,.1058,-.3249,1}},
+{{.5527,-.1058,0},{.5527,-.1058,0,1}},
+{{.1708,-.1058,.5527},{.1708,-.1058,.5527,1}},
+{{.1708,-.1058,-.5527},{.1708,-.1058,-.5527,1}},
+{{-.4471,-.1058,.3249},{-.4471,-.1058,.3249,1}},
+{{-.4471,-.1058,-.3249},{-.4471,-.1058,-.3249,1}},
+{{0,1,0},{0,1,0,1}},
+    {{0,-1,0},{0,-1,0,1}}
 };
-
+const GLubyte Indices[] = {
+    0,9,8, 2,7,9, 4,5,7, 3,6,5, 1,8,6,
+    0,8,23, 30,6,8, 3,21,6, 11,26,21, 13,23,26,
+    2,9,24, 30,8,9, 1,23,8, 13,25,23, 14,24,25,
+    4,7,22, 30,9,7, 0,24,9, 14,27,24, 12,22,27,
+    3,5,20, 30,7,5, 2,22,7, 12,29,22, 10,20,29,
+    1,6,21, 30,5,6, 4,20,5, 10,28,20, 11,21,28,
+    10,19,18, 12,17,19, 14,15,17, 13,16,15, 11,18,16,
+    31,19,17, 14,17,27, 2,27,22, 4,22,29, 10,29,19,
+    31,18,19, 12,19,29, 4,29,20, 3,20,28, 11,28,18,
+    31,16,18, 10,18,28, 3,28,21, 1,21,26, 13,26,16,
+    31,15,16, 11,16,26, 1,26,23, 0,23,25, 14,25,15,
+    31,17,15, 13,15,25, 0,25,24, 2,24,27, 12,27,17
+};
+/*
 const GLubyte Indices[] = {
     // Front
     0, 1, 2,
@@ -44,7 +92,7 @@ const GLubyte Indices[] = {
     // Bottom
     0, 3, 7,
     0, 7, 4
-};
+};*/
 
 @implementation openglView
 
@@ -94,7 +142,7 @@ const GLubyte Indices[] = {
 }
 
 - (void)render:(CADisplayLink*)displayLink{
-    glClearColor(0, 104.0/255.0, 55.0/255.0, 1.0);
+    glClearColor(0.9, 0.9, 0.9, 1.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_DEPTH_TEST);
     
@@ -106,17 +154,10 @@ const GLubyte Indices[] = {
     CC3GLMatrix *modelView = [CC3GLMatrix matrix];
     [modelView populateFromTranslation:CC3VectorMake(sin(CACurrentMediaTime()), 0, -7)];
     _currentRotation += displayLink.duration * 90;
-    /*
-    if(currentTouchPosition.x - startTouchPosition.x>0) _currentRotationX = 1.0;
-    else if (currentTouchPosition.x - startTouchPosition.x==0) _currentRotationX = 0.0;
-    else _currentRotationX = -1.0;
-    if(currentTouchPosition.y - startTouchPosition.y>0) _currentRotationY = 1.0;
-    else if (currentTouchPosition.y - startTouchPosition.y==0) _currentRotationY = 0.0;
-    else _currentRotationY = -1.0;
-     */
-    _currentRotationX += (currentTouchPosition.x - startTouchPosition.x) * 0.1;
-    _currentRotationY += (currentTouchPosition.y - startTouchPosition.y) * 0.1;
-    NSLog(@"%f, %f",_currentRotationX, _currentRotationY);
+
+    _currentRotationY += (currentTouchPosition.x - startTouchPosition.x) * 0.1;
+    _currentRotationX += (currentTouchPosition.y - startTouchPosition.y) * 0.1;
+    //NSLog(@"%f, %f",_currentRotationX, _currentRotationY);
     //[modelView rotateBy:CC3VectorMake(_currentRotation, _currentRotation, 0)];
     [modelView rotateBy:CC3VectorMake( _currentRotationX, _currentRotationY, 0)];
     glUniformMatrix4fv(_modelViewUniform, 1, 0, modelView.glMatrix);
