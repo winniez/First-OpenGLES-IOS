@@ -106,7 +106,19 @@ const GLubyte Indices[] = {
     CC3GLMatrix *modelView = [CC3GLMatrix matrix];
     [modelView populateFromTranslation:CC3VectorMake(sin(CACurrentMediaTime()), 0, -7)];
     _currentRotation += displayLink.duration * 90;
-    [modelView rotateBy:CC3VectorMake(_currentRotation, _currentRotation, 0)];
+    /*
+    if(currentTouchPosition.x - startTouchPosition.x>0) _currentRotationX = 1.0;
+    else if (currentTouchPosition.x - startTouchPosition.x==0) _currentRotationX = 0.0;
+    else _currentRotationX = -1.0;
+    if(currentTouchPosition.y - startTouchPosition.y>0) _currentRotationY = 1.0;
+    else if (currentTouchPosition.y - startTouchPosition.y==0) _currentRotationY = 0.0;
+    else _currentRotationY = -1.0;
+     */
+    _currentRotationX += (currentTouchPosition.x - startTouchPosition.x) * 0.1;
+    _currentRotationY += (currentTouchPosition.y - startTouchPosition.y) * 0.1;
+    NSLog(@"%f, %f",_currentRotationX, _currentRotationY);
+    //[modelView rotateBy:CC3VectorMake(_currentRotation, _currentRotation, 0)];
+    [modelView rotateBy:CC3VectorMake( _currentRotationX, _currentRotationY, 0)];
     glUniformMatrix4fv(_modelViewUniform, 1, 0, modelView.glMatrix);
     
     // 1
@@ -220,6 +232,37 @@ const GLubyte Indices[] = {
     CADisplayLink* displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(render:)];
     [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 }
+
+/* gesture detection and recognition BEGIN */
+
+
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    UITouch *aTouch = [touches anyObject];
+    currentTouchPosition = [aTouch locationInView:self];
+    startTouchPosition = [aTouch previousLocationInView:self];
+    
+    [self setupDisplayLink];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    startTouchPosition = CGPointZero;
+    currentTouchPosition = CGPointZero;
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    startTouchPosition = CGPointZero;
+    currentTouchPosition = CGPointZero;
+}
+
+/* gesture detection and recognition END */
+
 
 - (id)initWithFrame:(CGRect)frame
 {
