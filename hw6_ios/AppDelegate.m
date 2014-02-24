@@ -6,15 +6,30 @@
 //  Copyright (c) 2014 Winnie Zeng. All rights reserved.
 //
 
+
+
 #import "AppDelegate.h"
+
+// At top of file
 
 @implementation AppDelegate
 
+@synthesize glView=_glView;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    // At top of application:didFinishLaunchingWithOptions
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    
+    self.window = [[UIWindow alloc] initWithFrame: screenBounds];
+    
+    self.glView = [[[openglView alloc] initWithFrame:screenBounds] autorelease];
+    
+    [self.window addSubview:self.glView];
+    
+    //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+    //self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -44,6 +59,11 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)dealloc {
+    [_glView release];
+    [super dealloc];
 }
 
 @end
