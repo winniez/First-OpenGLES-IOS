@@ -422,34 +422,6 @@ const GLubyte Indices[] = {
                               GL_RENDERBUFFER, _colorRenderBuffer);
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _depthRenderBuffer);
 }
-/*
-- (void) drawCylinder {
-    int i, j, k;
-    // sides
-    glBegin(GL_TRIANGLE_STRIP);
-    for (j=0;j<=360;j+=DEF_D) {
-        glColor3f(1.0,1.0,0.0);
-        glVertex3f(Cos(j),+1,Sin(j));
-        glColor3f(0.0,1.0,0.0);
-        glVertex3f(Cos(j),-1,Sin(j));
-    }
-    glEnd();
-    
-    // top and bottom circles
-    // reuse the currentTexture on top and bottom)
-    for (i=1;i>=-1;i-=2) {
-        glBegin(GL_TRIANGLE_FAN);
-        glColor3f(0.0,0.0,1.0);
-        glVertex3f(0,i,0);
-        for (k=0;k<=360;k+=DEF_D) {
-            glColor3f(1.0,0.0,0.0);
-            glVertex3f(i*Cos(k),i,Sin(k));
-        }
-        glEnd();
-    }
-}
-*/
-
 
 - (void)render:(CADisplayLink*)displayLink{
     glClearColor(0.9, 0.9, 0.9, 1.0);
@@ -591,16 +563,7 @@ const GLubyte Indices[] = {
     glGenBuffers(1, &_indexBuffer);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indexBuffer);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Indices), Indices, GL_STATIC_DRAW);
-    
-    /*
-    glGenBuffers(1, &_vertexBuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices2), Vertices2, GL_STATIC_DRAW);
-    
-    glGenBuffers(1, &_indexBuffer);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indexBuffer);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Indices2), Indices2, GL_STATIC_DRAW);
-     */
+
 }
 
 - (void)setupDisplayLink {
