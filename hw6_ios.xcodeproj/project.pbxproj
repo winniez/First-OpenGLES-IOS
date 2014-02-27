@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		864C3E7618BEC7E500F3EC1F /* bubble-dropper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 864C3E7518BEC7E500F3EC1F /* bubble-dropper.jpg */; };
 		86A0902818BAC18800566F99 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A0902718BAC18800566F99 /* Foundation.framework */; };
 		86A0902A18BAC18800566F99 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A0902918BAC18800566F99 /* CoreGraphics.framework */; };
 		86A0902C18BAC18800566F99 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A0902B18BAC18800566F99 /* UIKit.framework */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		864C3E7518BEC7E500F3EC1F /* bubble-dropper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bubble-dropper.jpg"; sourceTree = "<group>"; };
 		86A0902418BAC18700566F99 /* hw6_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hw6_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86A0902718BAC18800566F99 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		86A0902918BAC18800566F99 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -140,6 +142,7 @@
 				86E6866918BAD32D00F5D39E /* CC3Foundation.m */,
 				86E6866A18BAD32D00F5D39E /* CC3GLMatrix.h */,
 				86E6866B18BAD32D00F5D39E /* CC3GLMatrix.m */,
+				864C3E7518BEC7E500F3EC1F /* bubble-dropper.jpg */,
 				86E6866C18BAD32D00F5D39E /* CC3Kazmath.c */,
 				86E6866D18BAD32D00F5D39E /* CC3Kazmath.h */,
 				86E6866E18BAD32D00F5D39E /* CC3Logging.h */,
@@ -262,6 +265,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				864C3E7618BEC7E500F3EC1F /* bubble-dropper.jpg in Resources */,
 				86A0903218BAC18800566F99 /* InfoPlist.strings in Resources */,
 				86E6866718BAD18C00F5D39E /* SimpleFragment.glsl in Resources */,
 				86A0903A18BAC18800566F99 /* Images.xcassets in Resources */,
